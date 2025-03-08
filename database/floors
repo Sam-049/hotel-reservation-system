@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS public.floors
+(
+    id integer NOT NULL DEFAULT nextval('floors_id_seq'::regclass),
+    floor_number integer NOT NULL,
+    CONSTRAINT floors_pkey PRIMARY KEY (id),
+    CONSTRAINT floors_floor_number_key UNIQUE (floor_number)
+)
