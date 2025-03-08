@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS public.rooms
+(
+    id integer NOT NULL DEFAULT nextval('rooms_id_seq'::regclass),
+    room_number integer NOT NULL,
+    floor_id integer NOT NULL,
+    is_occupied boolean DEFAULT false,
+    CONSTRAINT rooms_pkey PRIMARY KEY (id),
+    CONSTRAINT rooms_room_number_key UNIQUE (room_number),
+    CONSTRAINT rooms_floor_id_fkey FOREIGN KEY (floor_id)
+        REFERENCES public.floors (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
