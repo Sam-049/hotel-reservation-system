@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS public.bookings
+(
+    id integer NOT NULL DEFAULT nextval('bookings_id_seq'::regclass),
+    guest_name character varying(255) COLLATE pg_catalog."default",
+    booked_rooms integer[],
+    booking_time timestamp without time zone DEFAULT now(),
+    CONSTRAINT bookings_pkey PRIMARY KEY (id)
+)
