@@ -1,0 +1,41 @@
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">🏨 Hotel Room Visualization</h2>
+  
+    <!-- Controls -->
+    <div class="d-flex justify-content-center mb-4">
+      <input type="number" id="numRooms" 
+         [value]="numRooms()" 
+         (input)="updateNumRooms($event)" 
+         class="form-control w-25 me-2" 
+         min="1" max="5">
+  
+      <button class="btn btn-primary me-2" (click)="bookRooms()">Book</button>
+      <button class="btn btn-warning me-2" (click)="generateRandomOccupancy()">
+        Randomize
+      </button>
+      <button class="btn btn-danger" (click)="resetBookings()">Reset</button>
+    </div>
+  
+    <!-- Floors & Rooms Layout -->
+    <div class="hotel-layout">
+      <div class="floors">
+        <div *ngFor="let floor of getFloors(); let floorIndex = index" class="floor">
+          <div class="lift">⬆️</div>
+          <div class="rooms">
+            <div
+              *ngFor="let room of getRoomsByFloor(floor)"
+              class="room"
+              [ngClass]="{
+                'available': !isBooked(room.room_number) && !isRandomlyOccupied(room.room_number),
+                'booked': isBooked(room.room_number),
+                'random-occupied': isRandomlyOccupied(room.room_number)
+              }"
+            >
+              {{ room.room_number }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
